@@ -2,6 +2,9 @@ import express from "express";
 import connectDb from "./config/db.js";
 import dotenv from "dotenv";
 import productRouter from "./routes/ProductRoutes.js";
+import authRoutes from "./routes/AuthRoutes.js";
+import userRoutes from "./routes/UserRoutes.js";
+import cartRoutes from "./routes/CartRoutes.js";
 import cors from "cors";
 dotenv.config();
 connectDb();
@@ -16,7 +19,9 @@ app.use(
 );
 
 app.use("/product", productRouter);
-
+app.use("/auth", authRoutes);
+app.use("/user", userRoutes);
+app.use("/cart", cartRoutes);
 
 app.get('/', (req, res) => {
   res.status(200).json({ message: "🚀 Welcome to CRM Server" });

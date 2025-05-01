@@ -6,4 +6,5 @@ router.get("/",productController.getAllProducts);
 router.get("/byCategory",productController.getProductByCategory);
 router.get("/bestseller",productController.getBestseller);
 router.post("/products", upload.single('image'), productController.postAllProduct);
+router.get('/products/:productId', productController.getProductById);
 export default router;
