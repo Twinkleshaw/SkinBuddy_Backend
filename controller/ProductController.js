@@ -89,12 +89,10 @@ class ProductController {
         .status(400)
         .json({ error: "Missing or invalid bestseller query parameter" });
     } catch (error) {
-      return res
-        .status(500)
-        .json({
-          message: "Failed to fetch bestseller products",
-          error: error.message,
-        });
+      return res.status(500).json({
+        message: "Failed to fetch bestseller products",
+        error: error.message,
+      });
     }
   }
 
@@ -104,12 +102,12 @@ class ProductController {
       if (!productId) {
         return res.status(400).json({ message: "Missing product ID" });
       }
-  
+
       const productExist = await Product.findById(productId);
       if (!productExist) {
         return res.status(404).json({ message: "Product not found" });
       }
-  
+
       return res.status(200).json(productExist);
     } catch (error) {
       return res.status(500).json({
@@ -118,7 +116,18 @@ class ProductController {
       });
     }
   }
-  
+
+  async searchProducts(req, res) {
+    const { query } = req.query;
+
+    if (!query) return res.status(400).json({ message: "Query is required" });
+
+    const products = await Product.find({
+      name: { $regex: query, $options: "i" },
+    }).limit(5);
+
+    res.json(products);
+  }
 }
 
 export default new ProductController();
