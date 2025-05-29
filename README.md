@@ -26,17 +26,4 @@ This is the backend API for **SkinBuddy**, a skincare-focused eCommerce web appl
 - **Multer** for file uploads 
 - **CORS** and **dotenv** for environment management
 
----
 
-## 📁 Folder Structure
-
-/backend
-├── controllers/ # Business logic
-├── models/ # Mongoose schemas
-├── routes/ # API route definitions
-├── middleware/ # Authentication middleware
-├── utils/ # Helper functions
-├── uploads/ # Uploaded files (if any)
-├── .env # Environment variables
-├── index.js # Entry point
-└── package.json
